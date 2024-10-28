@@ -27,11 +27,11 @@ namespace ShiftItUptApp.Services
 
         #region with tunnel
         //Define the serevr IP address! (should be realIP address if you are using a device that is not running on the same machine as the server)
-        private static string serverIP = "7553shcv-5099.euw.devtunnels.ms";
+        private static string serverIP = "nb6s286v-5099.euw.devtunnels.ms";
         private HttpClient client;
         private string baseUrl;
         public static string BaseAddress = "https://7553shcv-5099.euw.devtunnels.ms/api/";
-        private static string ImageBaseAddress = "https://7553shcv-5099.euw.devtunnels.ms/";
+        private static string ImageBaseAddress = "https://nb6s286v-5099.euw.devtunnels.ms/";
         #endregion
 
         public ShiftItUptWebAPIProxy()
@@ -53,5 +53,38 @@ namespace ShiftItUptApp.Services
         {
             return $"{ShiftItUptWebAPIProxy.ImageBaseAddress}/profileImages/default.png";
         }
+        //public async Task<Worker?> LoginAsync(LoginDto userInfo)
+        //{
+        //    //Set URI to the specific function API
+        //    string url = $"{this.baseUrl}login";
+        //    try
+        //    {
+        //        //Call the server API
+        //        string json = JsonSerializer.Serialize(userInfo);
+        //        StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
+        //        HttpResponseMessage response = await client.PostAsync(url, content);
+        //        //Check status
+        //        if (response.IsSuccessStatusCode)
+        //        {
+        //            //Extract the content as string
+        //            string resContent = await response.Content.ReadAsStringAsync();
+        //            //Desrialize result
+        //            JsonSerializerOptions options = new JsonSerializerOptions
+        //            {
+        //                PropertyNameCaseInsensitive = true
+        //            };
+        //            Worker? result = JsonSerializer.Deserialize<Worker>(resContent, options);
+        //            return result;
+        //        }
+        //        else
+        //        {
+        //            return null;
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return null;
+        //    }
+        //}
     }
 }
