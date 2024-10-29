@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ShiftItUpApp.Models
 {
-    internal class Worker
+  public class Worker
     {
         public int WorkerId { get; set; }
 

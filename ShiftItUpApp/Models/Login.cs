@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ShiftItUpApp.Models
 {
-    class Login
+ public    class Login
     {
         public string UserEmail { get; set; } = null;
         public string UserPassword { get; set; } = null;
