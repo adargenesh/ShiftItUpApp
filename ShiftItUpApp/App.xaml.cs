@@ -1,4 +1,6 @@
 ﻿using ShiftItUpApp.Models;
+using ShiftItUpApp.ViewModels;
+using ShiftItUpApp.Views;
 
 namespace ShiftItUpApp
 {
@@ -6,11 +8,11 @@ namespace ShiftItUpApp
     {
 
         public Worker? LoggedInUser { get; set; }
-        public App()
+        public App(ServiceProvider serviceProvider)
         {
             InitializeComponent();
-
-            MainPage = new AppShell();
+            LoginView? v=serviceProvider.GetService<LoginView>();
+            MainPage = v;
         }
     }
 }
