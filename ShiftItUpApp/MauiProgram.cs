@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 using ShiftItUpApp.ViewModels;
+using ShiftItUpApp.Views;
 using ShiftItUptApp.Services;
 
 namespace ShiftItUpApp
@@ -30,7 +31,7 @@ namespace ShiftItUpApp
         public static MauiAppBuilder RegisterPages(this MauiAppBuilder builder)
         {
             builder.Services.AddTransient<AppShell>();
-           
+            builder.Services.AddTransient<LoginView>();
             return builder;
         }
 

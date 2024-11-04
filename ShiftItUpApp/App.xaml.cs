@@ -8,7 +8,7 @@ namespace ShiftItUpApp
     {
 
         public Worker? LoggedInUser { get; set; }
-        public App(ServiceProvider serviceProvider)
+        public App(IServiceProvider serviceProvider)
         {
             InitializeComponent();
             LoginView? v=serviceProvider.GetService<LoginView>();
