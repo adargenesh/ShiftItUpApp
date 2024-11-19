@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ShiftItUpApp.Services;
+using ShiftItUptApp.Services;
 using ShiftItUpApp.Models;
 
 
@@ -11,8 +11,8 @@ namespace ShiftItUpApp.ViewModels
 {
     internal class RegisterViewModel : ViewModelBase
     {
-        private ShiftItUpWebAPIProxy proxy;
-        public RegisterViewModel(TasksManagementWebAPIProxy proxy)
+        private ShiftItUptWebAPIProxy proxy;
+        public RegisterViewModel(ShiftItUptWebAPIProxy proxy)
         {
             this.proxy = proxy;
             RegisterCommand = new Command(OnRegister);
