@@ -1,4 +1,5 @@
 ﻿using ShiftItUpApp.Models;
+using ShiftItUpApp.Views;
 using ShiftItUptApp.Services;
 using System.Windows.Input;
 
@@ -115,7 +116,11 @@ namespace ShiftItUpApp.ViewModels
 
         private async void OnRegister()
         {
-
+            ErrorMsg = "";
+            Email = "";
+            Password = "";
+            // Navigate to the Register View page
+            ((App)Application.Current).MainPage.Navigation.PushAsync(serviceProvider.GetService<RegisterView>());
         }
 
 

@@ -39,6 +39,7 @@ namespace ShiftItUpApp
         {
             builder.Services.AddTransient<AppShell>();
             builder.Services.AddTransient<LoginView>();
+            builder.Services.AddTransient<RegisterView>();
             return builder;
         }
 
@@ -50,6 +51,7 @@ namespace ShiftItUpApp
         public static MauiAppBuilder RegisterViewModels(this MauiAppBuilder builder)
         {
             builder.Services.AddTransient<LoginViewModel>();
+            builder.Services.AddTransient<RegisterViewModel>();
             builder.Services.AddTransient<ViewModelBase>();
             return builder;
         }

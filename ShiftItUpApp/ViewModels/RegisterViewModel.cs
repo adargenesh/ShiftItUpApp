@@ -9,7 +9,7 @@ using ShiftItUpApp.Models;
 
 namespace ShiftItUpApp.ViewModels
 {
-    internal class RegisterViewModel : ViewModelBase
+    public class RegisterViewModel : ViewModelBase
     {
         private ShiftItUptWebAPIProxy proxy;
         public RegisterViewModel(ShiftItUptWebAPIProxy proxy)
@@ -18,9 +18,9 @@ namespace ShiftItUpApp.ViewModels
             RegisterCommand = new Command(OnRegister);
             CancelCommand = new Command(OnCancel);
             ShowPasswordCommand = new Command(OnShowPassword);
-            UploadPhotoCommand = new Command(OnUploadPhoto);
-            PhotoURL = proxy.GetDefaultProfilePhotoUrl();
-            LocalPhotoPath = "";
+            //UploadPhotoCommand = new Command(OnUploadPhoto);
+            //PhotoURL = proxy.GetDefaultProfilePhotoUrl();
+            //LocalPhotoPath = "";
             IsPassword = true;
             NameError = "Name is required";
             LastNameError = "Last name is required";
@@ -180,11 +180,6 @@ namespace ShiftItUpApp.ViewModels
         }
         #endregion
 
-       
-
-
-        
-
         #region Password
         private bool showPasswordError;
 
@@ -302,7 +297,69 @@ namespace ShiftItUpApp.ViewModels
         #endregion
 
 
+        public Command RegisterCommand { get; }
+        public Command CancelCommand { get; }
 
+        public async void OnRegister()
+        {
+            ValidateName();
+            ValidateLastName();
+            ValidateEmail();
+            ValidatePassword();
+            ValidateStoreName();
+
+            if (!ShowNameError && !ShowLastNameError && !ShowEmailError && !ShowPasswordError&!ShowStoreNameError)
+            {
+                //Create a new AppUser object with the data from the registration form
+                var newUser = new Worker
+                {
+                    UserName = Name,
+                    UserLastName = LastName,
+                    UserEmail = Email,
+                    UserPassword = Password,
+                    IsManager = false,
+                    UserSalary = "0"
+                };
+
+                //Call the Register method on the proxy to register the new user
+                InServerCall = true;
+                newUser = await proxy.Register(newUser);
+                InServerCall = false;
+
+                //If the registration was successful, navigate to the login page
+                if (newUser != null)
+                {
+                    //UPload profile imae if needed
+                    //if (!string.IsNullOrEmpty(LocalPhotoPath))
+                    //{
+                    //    await proxy.LoginAsync(new LoginInfo { Email = newUser.UserEmail, Password = newUser.UserPassword });
+                    //    AppUser? updatedUser = await proxy.UploadProfileImage(LocalPhotoPath);
+                    //    if (updatedUser == null)
+                    //    {
+                    //        InServerCall = false;
+                    //        await Application.Current.MainPage.DisplayAlert("Registration", "User Data Was Saved BUT Profile image upload failed", "ok");
+                    //    }
+                    //}
+                    InServerCall = false;
+
+                    ((App)(Application.Current)).MainPage.Navigation.PopAsync();
+                }
+                else
+                {
+
+                    //If the registration failed, display an error message
+                    string errorMsg = "Registration failed. Please try again.";
+                    await Application.Current.MainPage.DisplayAlert("Registration", errorMsg, "ok");
+                }
+            }
+          
+        }
+
+        public void OnCancel()
+        {
+            //Navigate back to the login page
+            ((App)(Application.Current)).MainPage.Navigation.PopAsync();
+        }
 
     }
 }

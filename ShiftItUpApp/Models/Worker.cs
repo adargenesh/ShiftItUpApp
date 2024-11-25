@@ -23,5 +23,6 @@ namespace ShiftItUpApp.Models
         public int StatusWorker { get; set; }
         public int IdStore { get; set; }
         public string UserPassword { get; set; } = null;
+        public bool IsManager { get; set; }
     }
 }

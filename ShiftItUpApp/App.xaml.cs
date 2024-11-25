@@ -11,8 +11,7 @@ namespace ShiftItUpApp
         public App(IServiceProvider serviceProvider)
         {
             InitializeComponent();
-            LoginView? v=serviceProvider.GetService<LoginView>();
-            MainPage = v;
+            MainPage = new NavigationPage(serviceProvider.GetService<LoginView>());
         }
     }
 }
