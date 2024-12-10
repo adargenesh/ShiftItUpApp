@@ -54,12 +54,12 @@ namespace ShiftItUptApp.Services
         {
             return $"{ShiftItUptWebAPIProxy.ImageBaseAddress}/profileImages/default.png";
         }
-        public async Task<Worker?> LoginAsync(Login userInfo)
+        public async Task<Worker?> LoginWorkerAsync(Login userInfo)
         {
             //Set URI to the specific function API
-            string url = $"{this.baseUrl}login";
+            string url = $"{this.baseUrl}loginWorker";
             try
-            {
+            { 
                 //Call the server API
                 string json = JsonSerializer.Serialize(userInfo);
                 StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
@@ -91,7 +91,7 @@ namespace ShiftItUptApp.Services
         public async Task<Store?> LoginStoreAsync(Login storeInfo)
         {
             //Set URI to the specific function API
-            string url = $"{this.baseUrl}login";
+            string url = $"{this.baseUrl}loginStore";
             try
             {
                 //Call the server API

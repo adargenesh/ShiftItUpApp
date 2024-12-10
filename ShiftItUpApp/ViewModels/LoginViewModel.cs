@@ -93,17 +93,24 @@ namespace ShiftItUpApp.ViewModels
             ErrorMsg = "";
             //Call the server to login
             Login loginInfo = new Login { UserEmail = Email, UserPassword = Password };
-            Worker? u = await this.proxy.LoginAsync(loginInfo);
+            Object? u = await this.proxy.LoginWorkerAsync(loginInfo);
 
             InServerCall = false;
 
-            //Set the application logged in user to be whatever user returned (null or real user)
-            ((App)Application.Current).LoggedInUser = u;
             if (u == null)
             {
-                ErrorMsg = "Invalid email or password";
+                u = this.proxy.LoginStoreAsync(loginInfo);
+                if (u == null)
+                    ErrorMsg = "Invalid email or password";
+
             }
-            else
+
+            //Set the application logged in user to be whatever user returned (null or real user)
+            ((App)Application.Current).LoggedInUser = u;
+
+
+
+            if (u != null)
             {
                 ErrorMsg = "";
                 //Navigate to the main page
@@ -112,6 +119,8 @@ namespace ShiftItUpApp.ViewModels
                 ((App)Application.Current).MainPage = shell;
               
             }
+
+            
         }
 
         private async void OnRegister()
