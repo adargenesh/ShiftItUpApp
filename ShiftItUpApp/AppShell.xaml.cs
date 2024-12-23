@@ -1,4 +1,7 @@
-﻿namespace ShiftItUpApp
+﻿using ShiftItUpApp.ViewModels;
+using ShiftItUpApp.Views;
+
+namespace ShiftItUpApp
 {
     public partial class AppShell : Shell
     {

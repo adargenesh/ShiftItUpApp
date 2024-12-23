@@ -4,12 +4,35 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:ShiftItUpApp"
-    Shell.FlyoutBehavior="Disabled"
-    Title="ShiftItUpApp">
+    xmlns:views="clr-namespace:ShiftItUpApp.Views"
+    Title="ShiftItUpApp"
+    Shell.FlyoutBehavior="Flyout">
 
-    <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
+    <FlyoutItem FlyoutDisplayOptions="AsMultipleItems" Route="tabs">
+        <ShellContent
+            Title="WeekSchedule"
+            ContentTemplate="{DataTemplate views:WeekScheduleView}"
+            Icon="sidur.png"
+            Route="WeekSchedules" />
+        <ShellContent
+            Title="Profile"
+            ContentTemplate="{DataTemplate views:ProfileView}"
+            Icon="profile.png"
+            Route="Profiles" />
+        <ShellContent
+            Title="ContactsList"
+            ContentTemplate="{DataTemplate views:ContactsListView}"
+            Icon="contacts.png"
+            Route="ContactsLists" />
+        <ShellContent
+            Title="SubmitShift"
+            ContentTemplate="{DataTemplate views:SubmitShiftsView}"
+            Icon="time.png"
+            Route="SubmitShifts" />
+    </FlyoutItem>
+
+    <MenuItem Command="{Binding LogoutCommand}" Text="Logout" />
+
+
 
 </Shell>

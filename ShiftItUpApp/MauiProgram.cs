@@ -1,10 +1,9 @@
 ﻿using CommunityToolkit.Maui;
 using Microsoft.Extensions.Logging;
 using ShiftItUpApp.ViewModels;
-using ShiftItUpApp.Views;
+using ShiftItUpApp.Views; // Make sure you import the Views namespace
 using ShiftItUptApp.Services;
 using CommunityToolkit.Maui;
-
 
 namespace ShiftItUpApp
 {
@@ -22,24 +21,30 @@ namespace ShiftItUpApp
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                     fonts.AddFont("Cinematografica-Regular-trial.ttf", "CinematograficaRegulartrial");
                     fonts.AddFont("secrcode.ttf", "secrcode");
-
                 })
                 .RegisterDataServices()
                 .RegisterPages()
                 .RegisterViewModels();
-           
 
 #if DEBUG
-    		builder.Logging.AddDebug();
+            builder.Logging.AddDebug();
 #endif
 
             return builder.Build();
         }
+
         public static MauiAppBuilder RegisterPages(this MauiAppBuilder builder)
         {
-            builder.Services.AddTransient<AppShell>();
+            // Disambiguate WeekScheduleView (from Views namespace)
+            builder.Services.AddTransient<Views.WeekScheduleView>();  // Explicitly using the Views namespace
+            builder.Services.AddTransient<ProfileView>();
+            builder.Services.AddTransient<ContactsListView>();
+            builder.Services.AddTransient<SubmitShiftsView>();
             builder.Services.AddTransient<LoginView>();
+            builder.Services.AddTransient<AppShell>();
             builder.Services.AddTransient<RegisterView>();
+            builder.Services.AddTransient<RegisterStoreView>();
+
             return builder;
         }
 
@@ -48,11 +53,17 @@ namespace ShiftItUpApp
             builder.Services.AddSingleton<ShiftItUptWebAPIProxy>();
             return builder;
         }
+
         public static MauiAppBuilder RegisterViewModels(this MauiAppBuilder builder)
         {
             builder.Services.AddTransient<LoginViewModel>();
             builder.Services.AddTransient<RegisterViewModel>();
+            builder.Services.AddTransient<WeekScheduleViewModel>(); // The ViewModel should stay as is
+            builder.Services.AddTransient<ProfileViewModel>();
+            builder.Services.AddTransient<ContactsListViewModel>();
+            builder.Services.AddTransient<SubmitShiftsViewModel>();
             builder.Services.AddTransient<ViewModelBase>();
+            builder.Services.AddTransient<RegisterStoreViewModel>();
             return builder;
         }
     }

@@ -22,6 +22,7 @@ namespace ShiftItUpApp.ViewModels
             this.serviceProvider = serviceProvider;
             this.LoginCommand = new Command(OnLogin);
             this.RegisterCommand = new Command(OnRegister);
+            this.RegisterStoreCommand = new Command(OnRegisterStore);
         }
 
         public string Email
@@ -81,6 +82,7 @@ namespace ShiftItUpApp.ViewModels
 
         public ICommand LoginCommand { get; }
         public ICommand RegisterCommand { get; }
+        public ICommand RegisterStoreCommand { get; }
 
 
 
@@ -130,6 +132,15 @@ namespace ShiftItUpApp.ViewModels
             Password = "";
             // Navigate to the Register View page
             ((App)Application.Current).MainPage.Navigation.PushAsync(serviceProvider.GetService<RegisterView>());
+        }
+
+        private async void OnRegisterStore()
+        {
+            ErrorMsg = "";
+            Email = "";
+            Password = "";
+            // Navigate to the Register View page
+            ((App)Application.Current).MainPage.Navigation.PushAsync(serviceProvider.GetService<RegisterStoreView>());
         }
 
 

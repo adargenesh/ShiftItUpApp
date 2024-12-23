@@ -1,39 +1,62 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-             x:Class="ShiftItUpApp.Views.LoginView"
-             Title="LoginView"
-             BackgroundColor="#FFF1DB">
+<ContentPage
+    x:Class="ShiftItUpApp.Views.LoginView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    Title="LoginView"
+    BackgroundColor="#FFF1DB">
     <ContentPage.Behaviors>
         <toolkit:StatusBarBehavior StatusBarColor="#FFF1DB" StatusBarStyle="DarkContent" />
     </ContentPage.Behaviors>
-    <VerticalStackLayout Padding="20" Spacing="15" >
-        <Label Text="login" TextColor="Black" HorizontalOptions="Center" FontSize="74" FontFamily="secrcode"> </Label>
-        <Entry 
-        Placeholder="Email"
-        Keyboard="Email"
-        Text="{Binding Email}" IsEnabled="{Binding NotInServerCall}"/>
+    <VerticalStackLayout Padding="20" Spacing="15">
+        <Label
+            FontFamily="secrcode"
+            FontSize="74"
+            HorizontalOptions="Center"
+            Text="login"
+            TextColor="Black" />
+        <Entry
+            IsEnabled="{Binding NotInServerCall}"
+            Keyboard="Email"
+            Placeholder="Email"
+            Text="{Binding Email}" />
 
-        <Entry 
-        Placeholder="Password"
-        IsPassword="True"
-        Text="{Binding Password}" IsEnabled="{Binding NotInServerCall}"/>
+        <Entry
+            IsEnabled="{Binding NotInServerCall}"
+            IsPassword="True"
+            Placeholder="Password"
+            Text="{Binding Password}" />
 
-        <Button 
+        <Button
             BackgroundColor="Black"
-        Text="Login"
-        Command="{Binding LoginCommand}" IsEnabled="{Binding NotInServerCall}"/>
-        <Label Text="{Binding ErrorMsg}" TextColor="Aqua" HorizontalOptions="Center"></Label>
-        <Label 
-        Text="Don't have an account? Register"
-        TextColor="#3C3D37"
-        HorizontalOptions="Center"
-        VerticalOptions="End" IsEnabled="{Binding NotInServerCall}">
+            Command="{Binding LoginCommand}"
+            IsEnabled="{Binding NotInServerCall}"
+            Text="Login" />
+        <Label
+            HorizontalOptions="Center"
+            Text="{Binding ErrorMsg}"
+            TextColor="Aqua" />
+        <Label
+            HorizontalOptions="Center"
+            IsEnabled="{Binding NotInServerCall}"
+            Text="Don't have an account? Register as Worker"
+            TextColor="#3C3D37"
+            VerticalOptions="End">
             <Label.GestureRecognizers>
-                <TapGestureRecognizer Command="{Binding RegisterCommand}"/>
+                <TapGestureRecognizer Command="{Binding RegisterCommand}" />
             </Label.GestureRecognizers>
         </Label>
-        <ActivityIndicator IsRunning="{Binding InServerCall}" Color="Aqua"></ActivityIndicator>
+        <Label
+            HorizontalOptions="Center"
+            IsEnabled="{Binding NotInServerCall}"
+            Text="Or Register as Store"
+            TextColor="#3C3D37"
+            VerticalOptions="End">
+            <Label.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding RegisterStoreCommand}" />
+            </Label.GestureRecognizers>
+        </Label>
+        <ActivityIndicator IsRunning="{Binding InServerCall}" Color="Aqua" />
     </VerticalStackLayout>
 </ContentPage>

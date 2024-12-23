@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="ShiftItUpApp.Views.RegisterView"
-             Title="RegisterView">
+<ContentPage
+    x:Class="ShiftItUpApp.Views.RegisterView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="RegisterView">
     <VerticalStackLayout>
         <Grid>
 
 
-            <!-- Main Content -->
-            <VerticalStackLayout IsEnabled="{Binding NotInServerCall}" Padding="20">
-                <!-- Photo --><!--
+            <!--  Main Content  -->
+            <VerticalStackLayout Padding="20" IsEnabled="{Binding NotInServerCall}">
+                <!--  Photo  -->
+                <!--
                 <Frame BorderColor="Black" Padding="5" Margin="10">
                     <Grid>
                         <Grid.RowDefinitions>
@@ -31,84 +33,156 @@ VerticalOptions="End">
                         </Label>
                     </Grid>
                 </Frame>-->
-                <Label Text="Sign Up" TextColor="Black" HorizontalOptions="Center" FontSize="74" FontFamily="secrcode"></Label>
-                <!-- First Name -->
+                <Label
+                    FontFamily="secrcode"
+                    FontSize="74"
+                    HorizontalOptions="Center"
+                    Text="Sign Up"
+                    TextColor="Black" />
+                <!--  First Name  -->
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
-                    <Label Text="First Name" Grid.Column="0" Style="{StaticResource labelNameStyle}" />
-                    <Label Text="{Binding NameError}" IsVisible="{Binding ShowNameError}" Grid.Column="1" Style="{StaticResource labelErrorStyle}" />
+                    <Label
+                        Grid.Column="0"
+                        Style="{StaticResource labelNameStyle}"
+                        Text="First Name" />
+                    <Label
+                        Grid.Column="1"
+                        IsVisible="{Binding ShowNameError}"
+                        Style="{StaticResource labelErrorStyle}"
+                        Text="{Binding NameError}" />
                 </Grid>
-                <Entry Placeholder="Type First Name" Text="{Binding Name}" Style="{StaticResource entryStyle}" />
+                <Entry
+                    Placeholder="Type First Name"
+                    Style="{StaticResource entryStyle}"
+                    Text="{Binding Name}" />
 
-                <!-- Last Name -->
+                <!--  Last Name  -->
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
-                    <Label Text="Last Name" Grid.Column="0" Style="{StaticResource labelNameStyle}" />
-                    <Label Text="{Binding LastNameError}" IsVisible="{Binding ShowLastNameError}" Grid.Column="1" Style="{StaticResource labelErrorStyle}" />
+                    <Label
+                        Grid.Column="0"
+                        Style="{StaticResource labelNameStyle}"
+                        Text="Last Name" />
+                    <Label
+                        Grid.Column="1"
+                        IsVisible="{Binding ShowLastNameError}"
+                        Style="{StaticResource labelErrorStyle}"
+                        Text="{Binding LastNameError}" />
                 </Grid>
-                <Entry Placeholder="Type Last Name" Text="{Binding LastName}" Style="{StaticResource entryStyle}" />
+                <Entry
+                    Placeholder="Type Last Name"
+                    Style="{StaticResource entryStyle}"
+                    Text="{Binding LastName}" />
 
-                <!-- Email -->
+                <!--  Email  -->
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
-                    <Label Text="Email" Grid.Column="0" Style="{StaticResource labelNameStyle}" />
-                    <Label Text="{Binding EmailError}" IsVisible="{Binding ShowEmailError}" Grid.Column="1" Style="{StaticResource labelErrorStyle}" />
+                    <Label
+                        Grid.Column="0"
+                        Style="{StaticResource labelNameStyle}"
+                        Text="Email" />
+                    <Label
+                        Grid.Column="1"
+                        IsVisible="{Binding ShowEmailError}"
+                        Style="{StaticResource labelErrorStyle}"
+                        Text="{Binding EmailError}" />
                 </Grid>
-                <Entry Placeholder="Type Email" Text="{Binding Email}" Style="{StaticResource entryStyle}" />
-                <!-- StoreName -->
+                <Entry
+                    Placeholder="Type Email"
+                    Style="{StaticResource entryStyle}"
+                    Text="{Binding Email}" />
+                <!--  StoreName  -->
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
-                    <Label Text="StoreName" Grid.Column="0" Style="{StaticResource labelNameStyle}" />
-                    <Label Text="{Binding StoreNameError}" IsVisible="{Binding ShowStoreNameError}" Grid.Column="1" Style="{StaticResource labelErrorStyle}" />
+                    <Label
+                        Grid.Column="0"
+                        Style="{StaticResource labelNameStyle}"
+                        Text="StoreName" />
+                    <Label
+                        Grid.Column="1"
+                        IsVisible="{Binding ShowStoreNameError}"
+                        Style="{StaticResource labelErrorStyle}"
+                        Text="{Binding StoreNameError}" />
                 </Grid>
-                <Entry Placeholder="Type Store name" Text="{Binding StoreName}" Style="{StaticResource entryStyle}" />
+                <Entry
+                    Placeholder="Type Store name"
+                    Style="{StaticResource entryStyle}"
+                    Text="{Binding StoreName}" />
 
 
-                <!-- Password -->
+                <!--  Password  -->
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
-                    <Label Text="Password" Grid.Column="0" Style="{StaticResource labelNameStyle}" />
-                    <Label Text="{Binding PasswordError}" IsVisible="{Binding ShowPasswordError}" Grid.Column="1" Style="{StaticResource labelErrorStyle}" />
+                    <Label
+                        Grid.Column="0"
+                        Style="{StaticResource labelNameStyle}"
+                        Text="Password" />
+                    <Label
+                        Grid.Column="1"
+                        IsVisible="{Binding ShowPasswordError}"
+                        Style="{StaticResource labelErrorStyle}"
+                        Text="{Binding PasswordError}" />
                 </Grid>
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="40" />
                     </Grid.ColumnDefinitions>
-                    <Entry Grid.Column="0" Placeholder="Type Password" Text="{Binding Password}" IsPassword="{Binding IsPassword}" Style="{StaticResource entryStyle}" />
-                    <ImageButton Grid.Column="1" HeightRequest="25" Source="passwordeye.jpg" Command="{Binding ShowPasswordCommand}" />
+                    <Entry
+                        Grid.Column="0"
+                        IsPassword="{Binding IsPassword}"
+                        Placeholder="Type Password"
+                        Style="{StaticResource entryStyle}"
+                        Text="{Binding Password}" />
+                    <ImageButton
+                        Grid.Column="1"
+                        Command="{Binding ShowPasswordCommand}"
+                        HeightRequest="25"
+                        Source="passwordeye.jpg" />
                 </Grid>
 
-                <!-- Register and Cancel Buttons -->
+                <!--  Register and Cancel Buttons  -->
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
-                    <Button Text="Register" Command="{Binding RegisterCommand}" IsEnabled="{Binding NotInServerCall}" Grid.Column="1" Style="{StaticResource buttonStyle}" />
-                    <Button Text="Cancel" Command="{Binding CancelCommand}" IsEnabled="{Binding NotInServerCall}" Grid.Column="0" Style="{StaticResource buttonStyle}"/>
+                    <Button
+                        Grid.Column="1"
+                        Command="{Binding RegisterCommand}"
+                        IsEnabled="{Binding NotInServerCall}"
+                        Style="{StaticResource buttonStyle}"
+                        Text="Register" />
+                    <Button
+                        Grid.Column="0"
+                        Command="{Binding CancelCommand}"
+                        IsEnabled="{Binding NotInServerCall}"
+                        Style="{StaticResource buttonStyle}"
+                        Text="Cancel" />
                 </Grid>
             </VerticalStackLayout>
-            <!-- Centered ActivityIndicator -->
-            <ActivityIndicator IsRunning="{Binding InServerCall}" 
-                   Color="Red" 
-                   VerticalOptions="Center" 
-                   HorizontalOptions="Center" />
+            <!--  Centered ActivityIndicator  -->
+            <ActivityIndicator
+                HorizontalOptions="Center"
+                IsRunning="{Binding InServerCall}"
+                VerticalOptions="Center"
+                Color="Red" />
         </Grid>
     </VerticalStackLayout>
 </ContentPage>
