@@ -164,7 +164,7 @@ namespace ShiftItUptApp.Services
         public async Task<Store?> RegisterStore(Store store)
         {
             //Set URI to the specific function API
-            string url = $"{this.baseUrl}register";
+            string url = $"{this.baseUrl}registerStore";
             try
             {
                 //Call the server API

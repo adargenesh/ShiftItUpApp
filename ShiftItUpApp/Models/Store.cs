@@ -17,6 +17,7 @@ namespace ShiftItUpApp.Models
         public string StoreManager { get; set; } = null;
 
         public string ManagerEmail { get; set; } = null;
+        public string ManagerPassword { get; set; } = null;
         public string ProfileImagePath { get; set; } = "";
     }
 }

@@ -2,9 +2,18 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ShiftItUpApp.Views.RegisterStoreView"
-             Title="RegisterStoreView">
+             Title="RegisterStoreView" 
+              BackgroundColor="#FFF1DB">
     <VerticalStackLayout>
-        <!-- Store Name -->
+        <Label
+      FontFamily="secrcode"
+      FontSize="54"
+      HorizontalOptions="Center"
+      Text="Store Sign Up"
+      TextColor="Black" />
+        <!--  First Name  -->
+       
+            <!-- Store Name -->
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
@@ -52,10 +61,58 @@
             <Label Text="{Binding ManagerEmailError}" IsVisible="{Binding ShowManagerEmailError}" Grid.Column="1" Style="{StaticResource labelErrorStyle}" />
         </Grid>
         <Entry Placeholder="Type Manager Email" Text="{Binding ManagerEmail}" Style="{StaticResource entryStyle}" />
+        <!-- Manager Password -->
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Label
+         Grid.Column="0"
+         Style="{StaticResource labelNameStyle}"
+         Text=" Manager Password" />
+            <Label
+         Grid.Column="1"
+         IsVisible="{Binding ShowPasswordError}"
+         Style="{StaticResource labelErrorStyle}"
+         Text="{Binding PasswordError}" />
+        </Grid>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="40" />
+            </Grid.ColumnDefinitions>
+            <Entry
+         Grid.Column="0"
+         IsPassword="{Binding IsPassword}"
+         Placeholder="Type Password"
+         Style="{StaticResource entryStyle}"
+         Text="{Binding Password}" />
+            <ImageButton
+         Grid.Column="1"
+         Command="{Binding ShowPasswordCommand}"
+         HeightRequest="25"
+         Source="passwordeye.jpg" />
+        </Grid>
 
-
-
-
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Button
+         Grid.Column="1"
+         Command="{Binding RegisterCommand}"
+         IsEnabled="{Binding NotInServerCall}"
+         Style="{StaticResource buttonStyle}"
+         Text="Register" />
+            <Button
+         Grid.Column="0"
+         Command="{Binding CancelCommand}"
+         IsEnabled="{Binding NotInServerCall}"
+         Style="{StaticResource buttonStyle}"
+         Text="Cancel" />
+        </Grid>
 
     </VerticalStackLayout>
 </ContentPage>

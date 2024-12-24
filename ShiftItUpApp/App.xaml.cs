@@ -8,6 +8,7 @@ namespace ShiftItUpApp
     {
 
         public Object? LoggedInUser { get; set; }
+       
         public App(IServiceProvider serviceProvider)
         {
             InitializeComponent();
