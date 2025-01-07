@@ -54,6 +54,7 @@ namespace ShiftItUptApp.Services
         {
             return $"{ShiftItUptWebAPIProxy.ImageBaseAddress}/profileImages/default.png";
         }
+
         public async Task<Worker?> LoginWorkerAsync(Login userInfo)
         {
             //Set URI to the specific function API
@@ -196,6 +197,77 @@ namespace ShiftItUptApp.Services
 
         }
 
+
+
+        public async Task<Worker?> UploadProfileImage(string imagePath)
+        {
+            //Set URI to the specific function API
+            string url = $"{this.baseUrl}uploadprofileimage";
+            try
+            {
+                //Create the form data
+                MultipartFormDataContent form = new MultipartFormDataContent();
+                var fileContent = new ByteArrayContent(File.ReadAllBytes(imagePath));
+                form.Add(fileContent, "file", imagePath);
+                //Call the server API
+                HttpResponseMessage response = await client.PostAsync(url, form);
+                //Check status
+                if (response.IsSuccessStatusCode)
+                {
+                    //Extract the content as string
+                    string resContent = await response.Content.ReadAsStringAsync();
+                    //Desrialize result
+                    JsonSerializerOptions options = new JsonSerializerOptions
+                    {
+                        PropertyNameCaseInsensitive = true
+                    };
+                    Worker? result = JsonSerializer.Deserialize<Worker>(resContent, options);
+                    return result;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
+
+
+
+
+
+
+
+
+        public async Task<bool> UpdateUser(Worker user)
+        {
+            //Set URI to the specific function API
+            string url = $"{this.baseUrl}updateprofile";
+            try
+            {
+                //Call the server API
+                string json = JsonSerializer.Serialize(user);
+                StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
+                HttpResponseMessage response = await client.PostAsync(url, content);
+                //Check status
+                if (response.IsSuccessStatusCode)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
 
 
 

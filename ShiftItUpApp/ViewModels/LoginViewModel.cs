@@ -6,10 +6,7 @@ using System.Windows.Input;
 namespace ShiftItUpApp.ViewModels
 {
     public class LoginViewModel : ViewModelBase
-    {
-
-
-
+    { 
 
         private ShiftItUptWebAPIProxy proxy;
         private IServiceProvider serviceProvider;
