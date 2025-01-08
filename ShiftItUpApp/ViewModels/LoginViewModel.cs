@@ -98,7 +98,7 @@ namespace ShiftItUpApp.ViewModels
 
             if (u == null)
             {
-                u = this.proxy.LoginStoreAsync(loginInfo);
+                u = await this.proxy.LoginStoreAsync(loginInfo);
                 if (u == null)
                     ErrorMsg = "Invalid email or password";
 
@@ -111,6 +111,14 @@ namespace ShiftItUpApp.ViewModels
 
             if (u != null)
             {
+                if (u is Store)
+                {
+                    Console.WriteLine("Store!");
+                }
+                if (u is Worker)
+                {
+                    Console.WriteLine("Worker!");
+                }
                 ErrorMsg = "";
                 //Navigate to the main page
                 AppShell shell = serviceProvider.GetService<AppShell>();

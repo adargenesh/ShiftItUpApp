@@ -44,6 +44,7 @@ namespace ShiftItUpApp
             builder.Services.AddTransient<AppShell>();
             builder.Services.AddTransient<RegisterView>();
             builder.Services.AddTransient<RegisterStoreView>();
+            builder.Services.AddTransient<EmployeeApprovalsView>();
 
             return builder;
         }

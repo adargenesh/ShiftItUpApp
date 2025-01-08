@@ -28,7 +28,19 @@
             Title="SubmitShift"
             ContentTemplate="{DataTemplate views:SubmitShiftsView}"
             Icon="time.png"
+            IsVisible="{Binding IsWorker}"
             Route="SubmitShifts" />
+    </FlyoutItem>
+    <FlyoutItem
+        Title="Test"
+        FlyoutDisplayOptions="AsMultipleItems"
+        IsVisible="{Binding IsManager}">
+
+        <ShellContent
+            Title="Employee Approvals"
+            ContentTemplate="{DataTemplate views:EmployeeApprovalsView}"
+            Icon="time.png"
+            Route="EmployeeApprovals" />
     </FlyoutItem>
 
     <MenuItem Command="{Binding LogoutCommand}" Text="Logout" />

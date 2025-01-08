@@ -18,7 +18,21 @@ namespace ShiftItUpApp.ViewModels
             this.currentUser = ((App)Application.Current).LoggedInUser;
         }
 
-      
+        public bool IsManager
+        {
+            get
+            {
+                return (this.currentUser is Store);
+            }
+        }
+
+        public bool IsWorker
+        {
+            get
+            {
+                return (this.currentUser is Worker);
+            }
+        }
 
         //this command will be used for logout menu item
         public Command LogoutCommand
