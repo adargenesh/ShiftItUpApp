@@ -75,6 +75,9 @@
 	  <MauiXaml Update="Views\ContactsListView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Views\EditingShiftsScheduleView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\EmployeeApprovalsView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
