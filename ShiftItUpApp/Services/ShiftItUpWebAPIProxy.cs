@@ -270,6 +270,41 @@ namespace ShiftItUptApp.Services
         }
 
 
+        public async Task<List<Store>?> GetAllStores()
+        {
+            string url = $"{this.baseUrl}getStores";
+            try
+            {
+                // Call the server API
+                HttpResponseMessage response = await client.GetAsync(url);
+
+                // Check status
+                if (response.IsSuccessStatusCode)
+                {
+                    // Extract the content as string
+                    string resContent = await response.Content.ReadAsStringAsync();
+
+                    // Deserialize result to List
+                    JsonSerializerOptions options = new JsonSerializerOptions
+                    {
+                        PropertyNameCaseInsensitive = true
+                    };
+                    List<Store> result = JsonSerializer.Deserialize<List<Store>>(resContent, options);
+
+                    return result;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
+
 
     }
 }

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ShiftItUptApp.Services;
 using ShiftItUpApp.Models;
+using System.Collections.ObjectModel;
 
 
 namespace ShiftItUpApp.ViewModels
@@ -21,6 +22,7 @@ namespace ShiftItUpApp.ViewModels
             //UploadPhotoCommand = new Command(OnUploadPhoto);
             //PhotoURL = proxy.GetDefaultProfilePhotoUrl();
             //LocalPhotoPath = "";
+            Fill();
             IsPassword = true;
             NameError = "Name is required";
             LastNameError = "Last name is required";
@@ -318,6 +320,7 @@ namespace ShiftItUpApp.ViewModels
                     UserEmail = Email,
                     UserPassword = Password,
                     IsManager = false,
+                    IdStore= StoreSelected.IdStore,
                     UserSalary = "0"
                 };
 
@@ -354,6 +357,45 @@ namespace ShiftItUpApp.ViewModels
             }
           
         }
+
+
+        #region pICKER
+        private ObservableCollection<Store> stores;
+        public ObservableCollection<Store> Stores
+        {
+            get => stores;
+            set
+            {
+                if (value != stores)
+                {
+                    stores = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        private Store storeSelected;
+        public Store StoreSelected
+        {
+            get => storeSelected;
+            set
+            {
+                if (value != storeSelected)
+                {
+                    storeSelected = value;
+                    
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        private async void Fill()
+        {
+            List<Store> stores = await this.proxy.GetAllStores();
+            //add error msg if null
+            Stores = new ObservableCollection<Store>(stores);
+        }
+        #endregion  
 
         public void OnCancel()
         {

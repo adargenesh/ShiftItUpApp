@@ -40,7 +40,7 @@ VerticalOptions="End">
                     HorizontalOptions="Center"
                     Text="Sign Up"
                     TextColor="Black" />
-                
+
                 <!--  First Name  -->
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -119,10 +119,13 @@ VerticalOptions="End">
                         Style="{StaticResource labelErrorStyle}"
                         Text="{Binding StoreNameError}" />
                 </Grid>
-                <Entry
-                    Placeholder="Type Store name"
-                    Style="{StaticResource entryStyle}"
-                    Text="{Binding StoreName}" />
+                <Picker
+                    x:Name="StorePicker"
+                    Title="Select A Store"
+                    ItemDisplayBinding="{Binding StoreName}"
+                    ItemsSource="{Binding Stores}"
+                    SelectedItem="{Binding StoreSelected}" />
+
 
 
                 <!--  Password  -->
@@ -167,18 +170,18 @@ VerticalOptions="End">
                     </Grid.ColumnDefinitions>
                     <Button
                         Grid.Column="1"
+                        BackgroundColor="Black"
                         Command="{Binding RegisterCommand}"
                         IsEnabled="{Binding NotInServerCall}"
                         Style="{StaticResource buttonStyle}"
-                        Text="Register"
-                        BackgroundColor="Black"/>
+                        Text="Register" />
                     <Button
                         Grid.Column="0"
+                        BackgroundColor="Black"
                         Command="{Binding CancelCommand}"
                         IsEnabled="{Binding NotInServerCall}"
                         Style="{StaticResource buttonStyle}"
-                        Text="Cancel"
-                        BackgroundColor="Black"/>
+                        Text="Cancel" />
                 </Grid>
             </VerticalStackLayout>
             <!--  Centered ActivityIndicator  -->
