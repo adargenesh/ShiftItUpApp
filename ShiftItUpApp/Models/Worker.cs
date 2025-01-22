@@ -16,8 +16,7 @@ namespace ShiftItUpApp.Models
 
         public string UserEmail { get; set; } = null;
 
-        public string UserStoreName { get; set; } = null;
-
+        
         public string UserSalary { get; set; }  // Changed to decimal for better salary representation
 
         public int StatusWorker { get; set; }

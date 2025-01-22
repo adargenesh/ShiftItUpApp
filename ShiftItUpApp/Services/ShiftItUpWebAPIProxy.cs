@@ -128,7 +128,7 @@ namespace ShiftItUptApp.Services
         public async Task<Worker?> Register(Worker user)
         {
             //Set URI to the specific function API
-            string url = $"{this.baseUrl}register";
+            string url = $"{this.baseUrl}registerWorker";
             try
             {
                 //Call the server API

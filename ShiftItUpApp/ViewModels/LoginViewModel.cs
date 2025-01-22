@@ -100,7 +100,7 @@ namespace ShiftItUpApp.ViewModels
             {
                 u = await this.proxy.LoginStoreAsync(loginInfo);
                 if (u == null)
-                    ErrorMsg = "Invalid email or password";
+                    ErrorMsg = "Invalid email or password Or User is waiting for approval";
 
             }
 

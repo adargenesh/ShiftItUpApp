@@ -321,7 +321,8 @@ namespace ShiftItUpApp.ViewModels
                     UserPassword = Password,
                     IsManager = false,
                     IdStore= StoreSelected.IdStore,
-                    UserSalary = "0"
+                    UserSalary = "0",
+                    StatusWorker = 2
                 };
 
                 //Call the Register method on the proxy to register the new user
