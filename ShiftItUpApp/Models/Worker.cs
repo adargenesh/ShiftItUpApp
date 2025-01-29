@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ShiftItUptApp.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,6 +25,13 @@ namespace ShiftItUpApp.Models
         public string UserPassword { get; set; } = null;
         public bool IsManager { get; set; }
         public string ProfileImagePath { get; set; } = "";
+        public string ImageURL
+        {
+            get
+            {
+                return ShiftItUptWebAPIProxy.ImageBaseAddress + ProfileImagePath;
+            }
+        }
 
     }
 }

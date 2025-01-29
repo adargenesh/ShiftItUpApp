@@ -1,12 +1,44 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="ShiftItUpApp.Views.ContactsListView"
-             Title="ContactsListView">
+<ContentPage
+    x:Class="ShiftItUpApp.Views.ContactsListView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Contacts List">
     <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+        <CollectionView ItemsSource="{Binding Workers}" SelectionMode="None">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Image
+                            Grid.Column="0"
+                            Source="{Binding ImageURL}"
+                            WidthRequest="100" />
+                        <StackLayout
+                            Grid.Column="1"
+                            Padding="20"
+                            VerticalOptions="Center">
+                            <Label
+                                FontAttributes="Italic"
+                                FontSize="Small"
+                                Text="{Binding UserName}" />
+                            <Label
+                                FontAttributes="Italic"
+                                FontSize="Small"
+                                Text="{Binding UserLastName}" />
+                            <Label
+                                FontAttributes="Italic"
+                                FontSize="Small"
+                                Text="{Binding UserEmail}" />
+
+                        </StackLayout>
+                    </Grid>
+
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
     </VerticalStackLayout>
 </ContentPage>

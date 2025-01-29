@@ -32,7 +32,7 @@ namespace ShiftItUptApp.Services
         private HttpClient client;
         private string baseUrl;
         public static string BaseAddress = "https://nb6s286v-5099.euw.devtunnels.ms/api/";
-        private static string ImageBaseAddress = "https://nb6s286v-5099.euw.devtunnels.ms/";
+        public static string ImageBaseAddress = "https://nb6s286v-5099.euw.devtunnels.ms/";
         #endregion
 
         public ShiftItUptWebAPIProxy()
@@ -303,9 +303,9 @@ namespace ShiftItUptApp.Services
                 return null;
             }
         }
-        public async Task<List<Worker>?> GetAllWorkers()
+        public async Task<List<Worker>?> GetWorkersOfStore()
         {
-            string url = $"{this.baseUrl}getWorkers";
+            string url = $"{this.baseUrl}getWorkersOfStore";
             try
             {
                 // Call the server API

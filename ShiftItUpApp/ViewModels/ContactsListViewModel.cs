@@ -1,4 +1,5 @@
 ﻿using ShiftItUpApp.Models;
+using ShiftItUptApp.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -10,18 +11,16 @@ namespace ShiftItUpApp.ViewModels
 {
     public class ContactsListViewModel : ViewModelBase
     {
-        private string UserName;
-        public string userName { get { return userName; } set { userName = value; } }
-
-        private string UserLastName;
-        public string userLastName { get { return userLastName; } set { userLastName = value; } }
-
-        private string UserEmail;
-        public string userEmail { get { return userEmail; } set { userEmail = value; } }
-
-        private string ProfileImagePath;
-        public string profileImagePath { get { return profileImagePath; } set { profileImagePath = value; } }
+        private ShiftItUptWebAPIProxy proxy;
+        
         public ObservableCollection<Worker> Workers { get; set; }
+
+        public ContactsListViewModel(ShiftItUptWebAPIProxy proxy)
+        {
+            this.proxy = proxy;
+            Workers = new ObservableCollection<Worker>();
+            GetAllWorkers();
+        }
 
 
 
@@ -30,19 +29,19 @@ namespace ShiftItUpApp.ViewModels
 
 
 
-        //private async void GetAllTeachers()
-        //{
-        //    List<WorkerDto> l = await proxy.GetAllWorkers();
+        private async void GetAllWorkers()
+        {
+            List<Worker>? l = await proxy.GetWorkersOfStore();
 
-
-        //    foreach (WorkerDto t in l)
-        //    {
-        //        WorkersList.Add(t);
-        //        FilteredWorkersList.Add(t);
-
-
-        //    }
-        //}
+            if (l != null)
+            {
+                foreach (Worker t in l)
+                {
+                    Workers.Add(t);
+                }
+            }
+            
+        }
 
 
     } 
