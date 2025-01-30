@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ShiftItUpApp.Views.ProfileView"
              Title="ProfileView"
-             BackgroundColor="#FFF1DB">
+             BackgroundColor="#e0eadc">
     <ScrollView>
         <Grid>
 
