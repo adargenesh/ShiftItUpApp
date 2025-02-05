@@ -269,6 +269,39 @@ namespace ShiftItUptApp.Services
             }
         }
 
+        public async Task<Worker> ApproveWorker(Worker user)
+        {
+            //Set URI to the specific function API
+            string url = $"{this.baseUrl}ApproveWorker";
+            try
+            {
+                //Call the server API
+                string json = JsonSerializer.Serialize(user);
+                StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
+                HttpResponseMessage response = await client.PostAsync(url, content);
+                //Check status
+                if (response.IsSuccessStatusCode)
+                {
+                    //Extract the content as string
+                    string resContent = await response.Content.ReadAsStringAsync();
+                    //Desrialize result
+                    JsonSerializerOptions options = new JsonSerializerOptions
+                    {
+                        PropertyNameCaseInsensitive = true
+                    };
+                    Worker? result = JsonSerializer.Deserialize<Worker>(resContent, options);
+                    return result;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
 
         public async Task<List<Store>?> GetAllStores()
         {
@@ -337,7 +370,39 @@ namespace ShiftItUptApp.Services
             }
         }
 
+        public async Task<List<Status>?> GetStatuses()
+        {
+            string url = $"{this.baseUrl}getStatuses";
+            try
+            {
+                // Call the server API
+                HttpResponseMessage response = await client.GetAsync(url);
 
+                // Check status
+                if (response.IsSuccessStatusCode)
+                {
+                    // Extract the content as string
+                    string resContent = await response.Content.ReadAsStringAsync();
+
+                    // Deserialize result to List
+                    JsonSerializerOptions options = new JsonSerializerOptions
+                    {
+                        PropertyNameCaseInsensitive = true
+                    };
+                    List<Status> result = JsonSerializer.Deserialize<List<Status>>(resContent, options);
+
+                    return result;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
 
     }
 }
