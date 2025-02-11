@@ -41,6 +41,7 @@
             ContentTemplate="{DataTemplate views:EmployeeApprovalsView}"
             Icon="time.png"
             Route="EmployeeApprovals" />
+       
     </FlyoutItem>
 
     <MenuItem Command="{Binding LogoutCommand}" Text="Logout" />
