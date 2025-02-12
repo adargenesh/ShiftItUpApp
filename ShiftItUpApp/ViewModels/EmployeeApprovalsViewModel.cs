@@ -5,12 +5,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ShiftItUpApp.Models;
+using ShiftItUptApp.Services;
 
 namespace ShiftItUpApp.ViewModels
 {
-    internal class EmployeeApprovalsViewModel : ViewModelBase
+    public class EmployeeApprovalsViewModel : ViewModelBase
 
     {
+
+
         private ObservableCollection<Status> statusList;
         private ObservableCollection<Worker> workers;
         private Status selectedStatus;
@@ -23,15 +26,15 @@ namespace ShiftItUpApp.ViewModels
             // אתחול רשימת הסטטוסים עם ערכים קבועים
             StatusList = new ObservableCollection<Status>
             {
-                new Status { Id = 0, Name = "מאושר" },
-                new Status { Id = 1, Name = "נדחה" },
-                new Status { Id = 2, Name = "ממתין" }
+                new Status { Id = 0, Name = "Approved" },
+                new Status { Id = 1, Name = "Declined" },
+                new Status { Id = 2, Name = "Pending" }
             };
 
         }
 
         public ObservableCollection<Status> StatusList { get; }
-       
+
     }
 
 }

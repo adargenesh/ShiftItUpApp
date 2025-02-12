@@ -403,6 +403,32 @@ namespace ShiftItUptApp.Services
                 return null;
             }
         }
+        public async Task<List<Worker>> GetWorkersOfStoreByStatus(int statusWorker)
+        {
+            string url = $"{this.baseUrl}GetWorkersOfStoreByStatus?statusWorker={statusWorker}";  // Correct query string for GET request
 
+            try
+            {
+                HttpResponseMessage response = await client.GetAsync(url);  // Use GET instead of POST
+                if (response.IsSuccessStatusCode)
+                {
+                    string resContent = await response.Content.ReadAsStringAsync();
+                    JsonSerializerOptions options = new JsonSerializerOptions
+                    {
+                        PropertyNameCaseInsensitive = true
+                    };
+                    List<Worker> result = JsonSerializer.Deserialize<List<Worker>>(resContent, options);
+                    return result;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
     }
 }
