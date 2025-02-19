@@ -9,6 +9,13 @@ namespace ShiftItUpApp
         {
             BindingContext = vm;
             InitializeComponent();
+            RegisterRoutes();
+        }
+
+        private void RegisterRoutes()
+        {
+            Routing.RegisterRoute("managerEditWorker", typeof(ManagerEditWorker));
+            
         }
     }
 }
