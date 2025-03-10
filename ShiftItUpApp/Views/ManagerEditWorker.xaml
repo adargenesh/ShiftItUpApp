@@ -4,9 +4,11 @@
              x:Class="ShiftItUpApp.Views.ManagerEditWorker"
              Title="ManagerEditWorker">
     <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+        <Picker
+    ItemDisplayBinding="{Binding Name}"
+    ItemsSource="{Binding StatusList}"
+    SelectedItem="{Binding SelectedStatus}" />
+        <Editor Text="{Binding Salary}"></Editor>
+        <Button Text="Save" Command="{Binding SaveCommand}"></Button>
     </VerticalStackLayout>
 </ContentPage>

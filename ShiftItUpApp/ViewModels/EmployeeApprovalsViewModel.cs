@@ -99,7 +99,7 @@ namespace ShiftItUpApp.ViewModels
         {
             var navParam = new Dictionary<string, object>
                 {
-                    { "selectedWorker", w}
+                    { "selectedWorker", w}, {"Statuses", StatusList}
                 };
             //Navigate to the task details page
             await Shell.Current.GoToAsync("managerEditWorker", navParam);

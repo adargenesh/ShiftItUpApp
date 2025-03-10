@@ -68,6 +68,7 @@ namespace ShiftItUpApp
             builder.Services.AddTransient<RegisterStoreViewModel>();
             builder.Services.AddTransient<AppShellViewModel>();
             builder.Services.AddTransient<EmployeeApprovalsViewModel>();
+            builder.Services.AddTransient<ManagerEditWorkerViewModel>();
             return builder;
         }
     }
