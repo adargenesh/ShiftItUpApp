@@ -109,7 +109,10 @@ namespace ShiftItUpApp.ViewModels
             bool success = await proxy.UpdateUser(TheWorker);
 
             if (success)
+            {
+                ((AppShell)Shell.Current).Refresh(typeof(EmployeeApprovalsViewModel));
                 await Shell.Current.Navigation.PopAsync();
+            }
             else
             {
                 await Shell.Current.DisplayAlert("Error", "Data was not saved! Try again later!", "Ok");

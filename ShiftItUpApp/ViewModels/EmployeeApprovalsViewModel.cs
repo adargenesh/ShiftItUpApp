@@ -105,5 +105,12 @@ namespace ShiftItUpApp.ViewModels
             await Shell.Current.GoToAsync("managerEditWorker", navParam);
 
         }
+
+        public override void Refresh()
+        {
+            base.Refresh();
+            FilterWorkers();
+
+        }
     }
 }
