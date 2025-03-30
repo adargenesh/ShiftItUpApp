@@ -156,7 +156,7 @@ namespace ShiftItUpApp.ViewModels
             for(int i = 0; i<4; i++)
             {
                 Sundays.Add(nextSunday);
-                nextSunday.AddDays(7);
+                nextSunday = nextSunday.AddDays(7);
             }
 
             SelectedSunday = Sundays[0];
