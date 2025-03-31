@@ -4,12 +4,44 @@
              x:Class="ShiftItUpApp.Views.SubmitShiftsView"
              Title="Submit Shifts">
     <VerticalStackLayout>
-        <Picker Title="בחר שבוע"
+        <Label Text="בחירת שבוע עבודה" 
+                   FontSize="24"
+                   TextColor="#333333"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center"
+                   Margin="0,0,0,20"/>
+
+        <!-- הצגת Picker במקום DatePicker שיציג רק את ימי הראשון מהרשימה בViewModel -->
+        <Frame BorderColor="#9B9B9B" 
+                   BackgroundColor="White"
+                   CornerRadius="8"
+                   HasShadow="False"
+                   Padding="15">
+            <Picker ItemsSource="{Binding Sundays}"
+                        SelectedItem="{Binding SelectedSunday, Mode=TwoWay}"
+                        ItemDisplayBinding="{Binding ., StringFormat='{0:dd/MM/yyyy}'}"
+                        Title="בחר יום ראשון"
+                        FontSize="Medium"
+                        TextColor="#333333"/>
+        </Frame>
+
+        <Label Text="בחר את יום הראשון הרצוי"
+                   FontSize="Small"
+                   TextColor="#9B9B9B"
+                   HorizontalOptions="Center"
+                   Margin="0,0,0,20"/>
+        <!--<DatePicker Date="{Binding SelectedSunday, Mode=TwoWay}"
+                   MinimumDate="{Binding Sundays[0]}"
+                   MaximumDate="{Binding Sundays[3]}"
+                   Format="dd/MM/yyyy"
+                   FontSize="Medium" 
+                   Margin="0,0,0,10"/>-->
+        <!--<Picker Title="בחר שבוע"
                   ItemDisplayBinding="{Binding ., StringFormat='{0:dd/MM/yyyy}'}"
                 ItemsSource="{Binding Sundays}"
                 SelectedItem="{Binding SelectedSunday ,Mode=TwoWay}"
                
-                FontSize="Medium" />
+                FontSize="Medium" />-->
 
 <!--date picker-->
 
@@ -41,8 +73,8 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <Button Text="Save" Command="{Binding SaveCommand}" IsEnabled="{Binding NotInServerCall}"  Grid.Column="1"  />
-            <Button Text="Cancel" Command="{Binding CancelCommand}" IsEnabled="{Binding NotInServerCall}"   />
+            <Button Text="Save" Command="{Binding SaveCommand}" IsEnabled="{Binding NotInServerCall}"  Grid.Column="1" BackgroundColor="#e0eadc" />
+            <Button Text="Cancel" Command="{Binding CancelCommand}" IsEnabled="{Binding NotInServerCall} " BackgroundColor="#e0eadc"/>
         </Grid>
 
     </VerticalStackLayout>

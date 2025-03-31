@@ -4,9 +4,65 @@
              x:Class="ShiftItUpApp.Views.EditingShiftsScheduleView"
              Title="Editing Shifts Schedule">
     <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+        
+        <CollectionView
+        x:Name="theCollectionView"
+        ItemsSource="{Binding Shifts}"
+        SelectionMode="None">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="100" />
+                        </Grid.ColumnDefinitions>
+                        <Image
+                        Grid.Column="0"
+                        Source="{Binding Worker.ImageURL}"
+                        WidthRequest="100" />
+                        <StackLayout
+                        Grid.Column="1"
+                        Padding="20"
+                        VerticalOptions="Center">
+                            <Label
+                            FontAttributes="Italic"
+                            FontSize="Small"
+                            Text="{Binding Worker.UserName}" />
+                            <Label
+                            FontAttributes="Italic"
+                            FontSize="Small"
+                            Text="{Binding Worker.UserLastName}" />
+                            <Label
+                            FontAttributes="Italic"
+                            FontSize="Small"
+                            Text="{Binding Worker.UserEmail}" />
+                            <!-- כותרת "בקשות" והבקשה עצמה  -->
+                            <StackLayout Margin="0,12,0,0">
+                                <Label
+                                        FontAttributes="Bold"
+                                        FontSize="Small"
+                                        TextColor="#333333"
+                                        Text="בקשות:"
+                                        HorizontalOptions="End"
+                                        Margin="0,0,0,3"/>
+
+                                <Label
+                                        FontSize="Small"
+                                        TextColor="#333333"
+                                        Text="{Binding Remarks, StringFormat='&quot;{0}&quot;'}"
+                                    HorizontalOptions="End"
+                                        Margin="10,0,10,0"/>
+                            </StackLayout>
+                        
+
+
+                        </StackLayout>
+                       
+                    </Grid>
+
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
     </VerticalStackLayout>
 </ContentPage>

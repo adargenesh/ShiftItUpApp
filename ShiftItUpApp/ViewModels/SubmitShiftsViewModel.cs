@@ -13,6 +13,32 @@ namespace ShiftItUpApp.ViewModels
     public class SubmitShiftsViewModel:ViewModelBase
     {
 
+
+
+        private ShiftItUptWebAPIProxy proxy;
+        public SubmitShiftsViewModel(ShiftItUptWebAPIProxy proxy)
+        {
+            this.proxy = proxy;
+            //Build weeks list
+            Sundays = new ObservableCollection<DateTime>();
+            DateTime today = DateTime.Today;
+            int daysUntilSunday = ((int)DayOfWeek.Sunday - (int)today.DayOfWeek + 7) % 7;
+            DateTime nextSunday = today.AddDays(daysUntilSunday);
+            for (int i = 0; i < 1; i++)
+            {
+                Sundays.Add(nextSunday);
+                nextSunday = nextSunday.AddDays(7);
+            }
+
+            SelectedSunday = Sundays[0];
+
+            SaveCommand = new Command(OnSave);
+            CancelCommand = new Command(OnCancel);
+        }
+
+
+
+
         private ObservableCollection<DateTime> sundays;
         public ObservableCollection<DateTime> Sundays
         {
@@ -115,10 +141,13 @@ namespace ShiftItUpApp.ViewModels
                     Remarks = remarks,
                     WeekNum = GetWeekNumber(SelectedSunday),
                     Year = SelectedSunday.Year,
+                    //Worker= (Worker)user,
                     WorkerId = workerID
+                   
                 };
 
                 WorkerShiftRequest? result = await proxy.AddShiftRequest(request);
+                await Shell.Current.DisplayAlert("Your request has been saved!","Thank you", "Ok");
 
                 if (result == null)
                 {
@@ -144,26 +173,7 @@ namespace ShiftItUpApp.ViewModels
             await Shell.Current.Navigation.PopAsync();
         }
 
-        private ShiftItUptWebAPIProxy proxy;
-        public SubmitShiftsViewModel(ShiftItUptWebAPIProxy proxy)
-        {
-            this.proxy = proxy;
-            //Build weeks list
-            Sundays = new ObservableCollection<DateTime>();
-            DateTime today = DateTime.Today;
-            int daysUntilSunday = ((int)DayOfWeek.Sunday - (int)today.DayOfWeek + 7) % 7;
-            DateTime nextSunday = today.AddDays(daysUntilSunday);
-            for(int i = 0; i<4; i++)
-            {
-                Sundays.Add(nextSunday);
-                nextSunday = nextSunday.AddDays(7);
-            }
-
-            SelectedSunday = Sundays[0];
-
-            SaveCommand = new Command(OnSave);
-            CancelCommand = new Command(OnCancel);
-        }
+     
 
     }
 }

@@ -43,6 +43,12 @@
             Route="EmployeeApprovals" />
        
     </FlyoutItem>
+    <ShellContent
+     IsVisible="{Binding IsManager}"
+     Title="editing"
+     ContentTemplate="{DataTemplate views:EditingShiftsScheduleView}"
+     Icon="time.png"
+     Route="EditingShiftsSchedule" />
 
     <MenuItem Command="{Binding LogoutCommand}" Text="Logout" />
 
