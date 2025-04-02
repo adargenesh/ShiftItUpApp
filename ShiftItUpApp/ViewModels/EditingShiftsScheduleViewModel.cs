@@ -6,6 +6,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace ShiftItUpApp.ViewModels
 {
@@ -16,9 +17,10 @@ namespace ShiftItUpApp.ViewModels
         public EditingShiftsScheduleViewModel(ShiftItUptWebAPIProxy proxy, IServiceProvider serviceProvider)
         {
             this.proxy = proxy;
-            this.serviceProvider = serviceProvider;
+            this.serviceProvider = serviceProvider; 
             Shifts = new ObservableCollection<WorkerShiftRequest>();
             ReadShiftFromServer();
+          
 
         }
         private ObservableCollection<WorkerShiftRequest> shifts;
@@ -39,9 +41,14 @@ namespace ShiftItUpApp.ViewModels
 
         }
 
-
+      
 
 
 
     }
 }
+
+
+
+    
+

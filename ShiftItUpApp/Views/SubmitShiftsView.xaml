@@ -2,7 +2,8 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ShiftItUpApp.Views.SubmitShiftsView"
-             Title="Submit Shifts">
+             Title="Submit Shifts"
+    BackgroundColor="#e0eadc">
     <VerticalStackLayout>
         <Label Text="בחירת שבוע עבודה" 
                    FontSize="24"
@@ -73,8 +74,8 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <Button Text="Save" Command="{Binding SaveCommand}" IsEnabled="{Binding NotInServerCall}"  Grid.Column="1" BackgroundColor="#e0eadc" />
-            <Button Text="Cancel" Command="{Binding CancelCommand}" IsEnabled="{Binding NotInServerCall} " BackgroundColor="#e0eadc"/>
+            <Button Text="Save" Command="{Binding SaveCommand}" IsEnabled="{Binding NotInServerCall}"  Grid.Column="1" BackgroundColor="Black" />
+            <Button Text="Cancel" Command="{Binding CancelCommand}" IsEnabled="{Binding NotInServerCall} " BackgroundColor="Black"/>
         </Grid>
 
     </VerticalStackLayout>
