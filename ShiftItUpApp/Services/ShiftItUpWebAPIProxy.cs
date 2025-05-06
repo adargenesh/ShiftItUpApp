@@ -305,6 +305,31 @@ namespace ShiftItUptApp.Services
                 return false;
             }
         }
+        public async Task<bool> UpdateProfileStore(Store store)
+        {
+            //Set URI to the specific function API
+            string url = $"{this.baseUrl}updateprofilestore";
+            try
+            {
+                //Call the server API
+                string json = JsonSerializer.Serialize(store);
+                StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
+                HttpResponseMessage response = await client.PostAsync(url, content);
+                //Check status
+                if (response.IsSuccessStatusCode)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
 
         public async Task<Worker> ApproveWorker(Worker user)
         {

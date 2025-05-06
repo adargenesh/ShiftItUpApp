@@ -25,7 +25,7 @@ namespace ShiftItUpApp.ViewModels
             LastNameError = "Last name is required";
             EmailError = "Email is required";
             PasswordError = "Password must be at least 4 characters long and contain letters and numbers";
-            SaveCommand= new Command(OnSave);
+            SaveCommand = new Command(OnSave);
             Object u = ((App)Application.Current).LoggedInUser;
             Worker w = new Worker();
             if (u is Worker)
@@ -44,10 +44,11 @@ namespace ShiftItUpApp.ViewModels
                 LastName = store.StoreManager;
                 Email = store.ManagerEmail;
                 Password = store.ManagerPassword;
+                StoreAdress= store.StoreAddress;
                 PhotoURL = proxy.GetImagesBaseAddress() + store.ProfileImagePath;
 
             }
-         
+
 
         }
         #region Name
@@ -359,6 +360,49 @@ namespace ShiftItUpApp.ViewModels
         #endregion
 
 
+        #region StoreAdress
+        private bool showStoreAdressError;
+
+        public bool ShowStoreAdressError
+        {
+            get => showStoreAdressError;
+            set
+            {
+                showStoreAdressError = value;
+                OnPropertyChanged("ShowStoreAdressError");
+            }
+        }
+
+        private string storeAdress;
+
+        public string StoreAdress
+        {
+            get => storeAdress;
+            set
+            {
+                storeAdress = value;
+                ValidateStoreAdress();
+                OnPropertyChanged("StoreAdress");
+            }
+        }
+
+        private string storeAdressError;
+
+        public string StoreAdressError
+        {
+            get => storeAdressError;
+            set
+            {
+                storeAdressError = value;
+                OnPropertyChanged("StoreAdressError");
+            }
+        }
+
+        private void ValidateStoreAdress()
+        {
+            this.ShowStoreAdressError = string.IsNullOrEmpty(StoreAdress);
+        }
+        #endregion
 
         public Command SaveCommand { get; }
         public async void OnSave()
@@ -373,6 +417,7 @@ namespace ShiftItUpApp.ViewModels
 
                 //Update AppUser object with the data from the Edit form
                 Object theUser = ((App)App.Current).LoggedInUser;
+                bool success;
                 Worker worker = new Worker();
                 if (theUser is Worker)
                 {
@@ -382,7 +427,7 @@ namespace ShiftItUpApp.ViewModels
                     worker.UserEmail = Email;
                     worker.UserPassword = Password;
                     InServerCall = true;
-                    bool success = await proxy.UpdateUser(worker);
+                    success = await proxy.UpdateUser(worker);
 
 
                     //If the save was successful, navigate to the login page
@@ -406,23 +451,68 @@ namespace ShiftItUpApp.ViewModels
                         InServerCall = false;
                         await Shell.Current.DisplayAlert("Save Profile", "Profile saved successfully", "ok");
                     }
-                    else
+
+
+                    Store store = new Store();
+                    if (theUser is Store)
                     {
-                        InServerCall = false;
-                        //If the registration failed, display an error message
-                        string errorMsg = "Save Profile failed. Please try again.";
-                        await Shell.Current.DisplayAlert("Save Profile", errorMsg, "ok");
+                        store = (Store)theUser;
+                        store.StoreManager = Name;
+                        store.StoreName = LastName;
+                        store.ManagerEmail = Email;
+                        store.ManagerPassword = Password;
+                        store.StoreAddress = storeAdress;
+
+                        InServerCall = true;
+                        success = await proxy.UpdateProfileStore(store);
+
+
+                        //If the save was successful, navigate to the login page
+                        if (success)
+                        {
+                            //UPload profile imae if needed
+                            if (!string.IsNullOrEmpty(LocalPhotoPath))
+                            {
+                                Worker? worker1Update = await proxy.UploadProfileImage(LocalPhotoPath);
+                                if (worker1Update == null)
+                                {
+                                    await Shell.Current.DisplayAlert("Save Profile", "User Data Was Saved BUT Profile image upload failed", "ok");
+                                }
+                                else
+                                {
+                                    worker.ProfileImagePath = worker1Update.ProfileImagePath;
+                                    UpdatePhotoURL(worker.ProfileImagePath);
+                                }
+
+                            }
+                            InServerCall = false;
+                            await Shell.Current.DisplayAlert("Save Profile", "Profile saved successfully", "ok");
+
+                        }
+
+
+
+
+
+
+
+                        else
+                        {
+                            InServerCall = false;
+                            //If the registration failed, display an error message
+                            string errorMsg = "Save Profile failed. Please try again.";
+                            await Shell.Current.DisplayAlert("Save Profile", errorMsg, "ok");
+                        }
                     }
+
+
+
+                    //Call the Register method on the proxy to register the new user
+
                 }
 
-
-
-                //Call the Register method on the proxy to register the new user
-
             }
-
-
-
         }
     }
-    }
+}
+    
