@@ -37,6 +37,16 @@ namespace ShiftItUpApp.ViewModels
                 Password = w.UserPassword;
                 PhotoURL = proxy.GetImagesBaseAddress() + w.ProfileImagePath;
             }
+            else
+            {
+                Store store = (Store)u;
+                Name = store.StoreName;
+                LastName = store.StoreManager;
+                Email = store.ManagerEmail;
+                Password = store.ManagerPassword;
+                PhotoURL = proxy.GetImagesBaseAddress() + store.ProfileImagePath;
+
+            }
          
 
         }
