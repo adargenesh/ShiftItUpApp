@@ -47,6 +47,7 @@ namespace ShiftItUpApp
             builder.Services.AddTransient<EmployeeApprovalsView>();
             builder.Services.AddTransient<ManagerEditWorker>();
             builder.Services.AddTransient<EditingShiftsScheduleView>();
+            builder.Services.AddTransient<DefiningShiftsView>();
 
             return builder;
         }
@@ -71,6 +72,7 @@ namespace ShiftItUpApp
             builder.Services.AddTransient<EmployeeApprovalsViewModel>();
             builder.Services.AddTransient<ManagerEditWorkerViewModel>();
             builder.Services.AddTransient<EditingShiftsScheduleViewModel>();
+            builder.Services.AddTransient<DefiningShiftsViewModel>();
             return builder;
         }
     }

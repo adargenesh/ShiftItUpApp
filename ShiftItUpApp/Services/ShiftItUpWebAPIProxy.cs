@@ -525,5 +525,62 @@ namespace ShiftItUptApp.Services
                 return null;
             }
         }
+
+        public async Task<List<DefiningShift>> GetDefiningShifts()
+        {
+            string url = $"{this.baseUrl}GetDefiningShifts";  
+
+            try
+            {
+                HttpResponseMessage response = await client.GetAsync(url);  // Use GET instead of POST
+                if (response.IsSuccessStatusCode)
+                {
+                    string resContent = await response.Content.ReadAsStringAsync();
+                    JsonSerializerOptions options = new JsonSerializerOptions
+                    {
+                        PropertyNameCaseInsensitive = true
+                    };
+                    List<DefiningShift> result = JsonSerializer.Deserialize<List<DefiningShift>>(resContent, options);
+                    return result;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
+        public async Task<bool> UpdateDefiningShifts(List<DefiningShift> shifts)
+        {
+            //Set URI to the specific function API
+            string url = $"{this.baseUrl}UpdateDefiningShifts";
+            try
+            {
+                //Call the server API
+                string json = JsonSerializer.Serialize(shifts);
+                StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
+                HttpResponseMessage response = await client.PostAsync(url, content);
+                //Check status
+                if (response.IsSuccessStatusCode)
+                {
+                    
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
     }
+
+   
 }

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ShiftItUpApp.Views.DefiningShiftsView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="DefiningShiftsView">
+    <ScrollView>
+        <StackLayout Padding="10" Spacing="10">
+            <Label
+                FontSize="20"
+                HorizontalOptions="Center"
+                Text="Defining Shifts" />
+
+            <CollectionView ItemsSource="{Binding Shifts}" SelectionMode="None">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout
+                            Margin="0,5"
+                            Padding="5"
+                            BackgroundColor="#f0f0f0"
+                            Spacing="5">
+                            <Picker Title="Day of Week" SelectedIndex="{Binding DayOfWeek}">
+                                <Picker.ItemsSource>
+                                    <x:Array Type="{x:Type x:String}">
+                                        <x:String>Sunday</x:String>
+                                        <x:String>Monday</x:String>
+                                        <x:String>Tuesday</x:String>
+                                        <x:String>Wednesday</x:String>
+                                        <x:String>Thursday</x:String>
+                                        <x:String>Friday</x:String>
+                                        <x:String>Saturday</x:String>
+                                    </x:Array>
+                                </Picker.ItemsSource>
+                            </Picker>
+                            <Entry Placeholder="Shift Name" Text="{Binding Name}" />
+                            <TimePicker Time="{Binding StartTime}" />
+                            <TimePicker Time="{Binding EndTime}" />
+                            <Entry
+                                Keyboard="Numeric"
+                                Placeholder="Number of Employees"
+                                Text="{Binding NumEmployees}" />
+
+                            <Button
+                                Command="{Binding BindingContext.RemoveShiftCommand, Source={RelativeSource AncestorType={x:Type CollectionView}}}"
+                                CommandParameter="{Binding .}"
+                                Text="Remove" />
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <Button Command="{Binding AddShiftCommand}" Text="Add New Shift" />
+            <Button Command="{Binding SaveShiftsCommand}" Text="Save Changes" />
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

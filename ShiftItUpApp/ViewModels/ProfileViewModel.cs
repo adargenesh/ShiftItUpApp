@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using ShiftItUpApp.Models;
 using ShiftItUptApp.Services;
 
@@ -13,6 +14,12 @@ namespace ShiftItUpApp.ViewModels
     {
         private ShiftItUptWebAPIProxy proxy;
         private IServiceProvider serviceProvider;
+
+        public bool IsStoreUser { get; set; } // Bind this to determine visibility of the button
+
+        public ICommand NavigateToDefiningShiftsCommand { get; }
+
+      
         public ProfileViewModel(ShiftItUptWebAPIProxy proxy, IServiceProvider serviceProvider)
         {
             this.proxy = proxy;
