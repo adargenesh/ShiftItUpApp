@@ -10,22 +10,22 @@
 
     <FlyoutItem FlyoutDisplayOptions="AsMultipleItems" Route="tabs">
         <ShellContent
-            Title="WeekSchedule"
+            Title="Week Schedule" 
             ContentTemplate="{DataTemplate views:WeekScheduleView}"
-            Icon="sidur.png"
+            Icon="calendar.png"
             Route="WeekSchedules" />
         <ShellContent
             Title="Profile"
             ContentTemplate="{DataTemplate views:ProfileView}"
-            Icon="profile.png"
+            Icon="user.png"
             Route="Profiles" />
         <ShellContent
-            Title="ContactsList"
+            Title="Contacts List"
             ContentTemplate="{DataTemplate views:ContactsListView}"
             Icon="contacts.png"
             Route="ContactsLists" />
         <ShellContent
-            Title="SubmitShift"
+            Title="Submit Shift"
             ContentTemplate="{DataTemplate views:SubmitShiftsView}"
             Icon="time.png"
             IsVisible="{Binding IsWorker}"
@@ -39,19 +39,17 @@
         <ShellContent
             Title="Employee Approvals"
             ContentTemplate="{DataTemplate views:EmployeeApprovalsView}"
-            Icon="time.png"
+            Icon="checkmark.png"
             Route="EmployeeApprovals" />
        
     </FlyoutItem>
     <ShellContent
      IsVisible="{Binding IsManager}"
-     Title="editing"
+     Title="Editing Shifts Schedule"
      ContentTemplate="{DataTemplate views:EditingShiftsScheduleView}"
-     Icon="time.png"
+     Icon="billabong.png"
      Route="EditingShiftsSchedule" />
 
-    <MenuItem Command="{Binding LogoutCommand}" Text="Logout" />
-
-
-
+    <MenuItem Command="{Binding LogoutCommand}" Text="Logout" IconImageSource="logout.png" />
+   
 </Shell>

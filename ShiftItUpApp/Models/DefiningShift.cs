@@ -20,6 +20,32 @@ namespace ShiftItUpApp.Models
 
         public int NumEmployees { get; set; }
 
-        public DefiningShift() { }
+        public TimeSpan TimeSpanStartTime
+        {
+            get
+            {
+                return StartTime.ToTimeSpan();
+            }
+            set
+            {
+                StartTime = TimeOnly.FromTimeSpan(value);
+            }
+        }
+        public TimeSpan TimeSpanEndTime
+        {
+            get
+            {
+                return EndTime.ToTimeSpan();
+            }
+            set
+            {
+                EndTime = TimeOnly.FromTimeSpan(value);
+            }
+        }
+
+        public DefiningShift() 
+        {
+            
+        }
     }
 }

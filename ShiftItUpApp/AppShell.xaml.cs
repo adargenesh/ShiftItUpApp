@@ -15,6 +15,7 @@ namespace ShiftItUpApp
         private void RegisterRoutes()
         {
             Routing.RegisterRoute("managerEditWorker", typeof(ManagerEditWorker));
+            Routing.RegisterRoute("DefiningShiftsView", typeof(DefiningShiftsView));
             
         }
 

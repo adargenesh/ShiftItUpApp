@@ -57,11 +57,18 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="Resources\Images\billabong.png" />
+	  <None Remove="Resources\Images\calendar.png" />
+	  <None Remove="Resources\Images\checkmark.png" />
 	  <None Remove="Resources\Images\contacts.png" />
+	  <None Remove="Resources\Images\edit.png" />
+	  <None Remove="Resources\Images\logout.png" />
 	  <None Remove="Resources\Images\passwordeye.jpg" />
 	  <None Remove="Resources\Images\profile.png" />
 	  <None Remove="Resources\Images\sidur.png" />
 	  <None Remove="Resources\Images\time.png" />
+	  <None Remove="Resources\Images\user.png" />
+	  <None Remove="Resources\Images\yesno.png" />
 	</ItemGroup>
 
 	<ItemGroup>

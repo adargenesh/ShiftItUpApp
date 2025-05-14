@@ -32,9 +32,9 @@
                                     </x:Array>
                                 </Picker.ItemsSource>
                             </Picker>
-                            <Entry Placeholder="Shift Name" Text="{Binding Name}" />
-                            <TimePicker Time="{Binding StartTime}" />
-                            <TimePicker Time="{Binding EndTime}" />
+
+                            <TimePicker Time="{Binding TimeSpanStartTime}" />
+                            <TimePicker Time="{Binding TimeSpanEndTime}" />
                             <Entry
                                 Keyboard="Numeric"
                                 Placeholder="Number of Employees"

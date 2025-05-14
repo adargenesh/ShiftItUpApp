@@ -17,7 +17,7 @@ namespace ShiftItUpApp.ViewModels
 
         public bool IsStoreUser { get; set; } // Bind this to determine visibility of the button
 
-        public ICommand NavigateToDefiningShiftsCommand { get; }
+        
 
       
         public ProfileViewModel(ShiftItUptWebAPIProxy proxy, IServiceProvider serviceProvider)
@@ -33,7 +33,9 @@ namespace ShiftItUpApp.ViewModels
             EmailError = "Email is required";
             PasswordError = "Password must be at least 4 characters long and contain letters and numbers";
             SaveCommand = new Command(OnSave);
+            OpenDefiningShiftsCommand = new Command(OnOpenDefiningShifts);
             Object u = ((App)Application.Current).LoggedInUser;
+            IsStoreUser = (u is Store); // Check if the user is a store user
             Worker w = new Worker();
             if (u is Worker)
             {
@@ -411,7 +413,16 @@ namespace ShiftItUpApp.ViewModels
         }
         #endregion
 
+
+        public Command OpenDefiningShiftsCommand { get; private set; }
+
+        private async void OnOpenDefiningShifts()
+        {
+            // Navigate to the DefiningShiftsView
+            await Shell.Current.GoToAsync("DefiningShiftsView");
+        }
         public Command SaveCommand { get; }
+        
         public async void OnSave()
         {
             ValidateName();
